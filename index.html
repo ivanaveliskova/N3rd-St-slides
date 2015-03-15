@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>N3rd St and Cesium</title>
+
+		<meta name="description" content="Discussion of Mapping out N3rd St">
+		<meta name="author" content="Ivana Veliskova">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>N 3rd St</h1>
+					<p>More than just a geographic location</p>
+					<img src="http://laddr-n3rdst.poplar.phl.io/img/n3rd-st-logo.png"/>
+				</section>
+
+				<section>
+					<section>
+						<img src="http://ladyhacks.org/wp-content/uploads/2014/10/cropped-LadyHacks-wordpress.png" />
+					</section>
+					<section>
+						<h2>Company Data</h2>
+						<img src="images/companydata.png"/>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Google Maps</h2>
+						<iframe width="400" height="500" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col1+from+1HMkOQWLMUEw8WX1uME6SwTlipb4BmwxT6Vf-bqUy&amp;viz=MAP&amp;h=false&amp;lat=39.957843663059805&amp;lng=-75.14245659837951&amp;t=1&amp;z=14&amp;l=col1&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
+					</section>
+					<section>
+						<h2>Not the best solution</h2>
+					</section>
+				</section>
+
+				<section>
+					<img src="http://cesiumjs.org/images/Cesium_Logo_forLightBackground.png"/>
+				</section>
+
+				<section>
+					<h2>Challenges</h2>
+				</section>
+
+				<section>
+					<section>
+						<h2>Next Steps</h2>
+						<pre><code data-trim>
+var companyNames = [];
+
+for (var i = 0; i < companies.length; i++) {
+  companyNames[i] = companies[i]._name;
+};
+
+companyNames.sort();
+
+for(i = 0; i < companyNames.length; i++){
+  for(var y = 0; y < companies.length; y++){
+    if (companies[i]._name == companyNames[y]){
+      //Then have it list the company in the sidebar.
+    };
+  };
+};
+						</code></pre>
+					</section>
+					<section>
+						<h2>Next Steps</h2>
+						<pre><code data-trim>
+var companies = [
+  {
+    "companyName" : "Websites R Us",
+    "id" : "websitesRUs",
+    "website" : "http://www.WebsitesR.us",
+    "address" : "3 N 3rd St. Philadelphia, PA 19106",
+    "longitude" : "-75.1455047",
+    "latitude" : "39.9504263",
+    "description" : "We make awesome websites and stuff. And love Doctor Who.",
+    "logo" : "http://www.WebsitesR.us/websitesRUs-logo.png"
+  }
+]
+						</code></pre>
+						<pre><code data-trim>
+viewer.entities.add({
+  id: 'websitesRUs',
+  name : 'Websites R Us',
+  position : Cesium.Cartesian3.fromDegrees(-75.1455047, 39.9504263),
+  billboard : {
+    image : pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 30).toDataURL(),
+    verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+  },
+  description : '\
+    <img width="40%" style="display: block; margin: 1em auto;" src="http://www.WebsitesR.us/websitesRUs-logo.png" alt="Websites R Us">
+	<p>Address: 3 N 3rd St. Philadelphia, PA 19106</p>
+	<p>Website: <a href="http://www.WebsitesR.us" target="_blank" style="color: #77AAFF;">http://www.WebsitesR.us</a></p>
+	<p>We make awesome websites and stuff. And love Doctor Who.</p>'
+})
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+				</section>
+				
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
