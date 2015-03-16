@@ -116,29 +116,29 @@ for(i = 0; i < companyNames.length; i++){
 var companies = [
   {
     "companyName" : "Websites R Us",
-    "id" : "websitesRUs",
-    "website" : "http://www.WebsitesR.us",
+    "id" : "awesomeWebsitesRUs",
+    "website" : "http://www.AwesomeWebsitesR.us",
     "address" : "3 N 3rd St. Philadelphia, PA 19106",
     "longitude" : "-75.1455047",
     "latitude" : "39.9504263",
     "description" : "We make awesome websites and stuff. And love Doctor Who.",
-    "logo" : "http://www.WebsitesR.us/websitesRUs-logo.png"
+    "logo" : "http://www.AwesomeWebsitesR.us/awesomeWebsitesRUs-logo.png"
   }
 ]
 						</code></pre>
 						<pre><code data-trim>
 viewer.entities.add({
-  id: 'websitesRUs',
-  name : 'Websites R Us',
+  id: 'awesomeWebsitesRUs',
+  name : 'Awesome Websites R Us',
   position : Cesium.Cartesian3.fromDegrees(-75.1455047, 39.9504263),
   billboard : {
     image : pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 30).toDataURL(),
     verticalOrigin : Cesium.VerticalOrigin.BOTTOM
   },
   description : '\
-    <img width="40%" style="display: block; margin: 1em auto;" src="http://www.WebsitesR.us/websitesRUs-logo.png" alt="Websites R Us">
-	<p>Address: 3 N 3rd St. Philadelphia, PA 19106</p>
-	<p>Website: <a href="http://www.WebsitesR.us" target="_blank" style="color: #77AAFF;">http://www.WebsitesR.us</a></p>
+    <img width="40%" style="display: block; margin: 1em auto;" src="http://www.AwesomeWebsitesR.us/awesomeWebsitesRUs-logo.png" alt="Awesome Websites R Us">\
+	<p>Address: 3 N 3rd St. Philadelphia, PA 19106</p>\
+	<p>Website: <a href="http://www.AwesomeWebsitesR.us" target="_blank" style="color: #77AAFF;">http://www.AwesomeWebsitesR.us</a></p>\
 	<p>We make awesome websites and stuff. And love Doctor Who.</p>'
 })
 						</code></pre>
